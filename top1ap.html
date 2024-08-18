@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+    
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="p-3 bg-light">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="logo">
+                <img src="https://lh3.googleusercontent.com/proxy/ZojNT7Ked2afYGWgWEO5-JMhlEawhK3_tUiT0-Xoc_pJOMXJexlXpcLRwz7C2k897PAn2pvNXVeSPm6-qI8Bx04Srm6hzm5KsiC3SmqdVuLD6eER1m8" width="100px" height="auto" alt="Logo">
+            </div>
+            <div class="arrow d-flex align-items-center">
+                <img id="grid" src="https://image.flaticon.com/icons/svg/44/44645.svg" width="20px" height="20px" alt="Grid">
+                <img src="https://image.flaticon.com/icons/svg/61/61041.svg" width="10px" height="10px" alt="Arrow">
+            </div>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Host your home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Host an experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Help</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Log in</a></li>
+                </ul>
+            </nav>
+            <a href="#"><button class="btn btn-primary">Sign up</button></a>
+        </div>
+    </header>
+
+    <nav class="bg-white shadow dark:bg-gray-800">
+        <div class="container d-flex justify-content-center p-3">
+            <a href="index.html" class="text-gray-800 mx-3">Home</a>
+            <a href="transport.html" class="text-gray-800 mx-3">Transport</a>
+            <a href="To-Do\To-Do.html" class="text-gray-800 mx-3">Things to do</a>
+            <a href="#" class="text-gray-800 mx-3">Blog</a>
+            <a href="#" class="text-gray-800 mx-3">Contact</a>
+        </div>
+    </nav>
+    <div class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <div class="intro-wrap">
+                        <h1 class="mb-5"><span class="d-block">Let's Enjoy Your</span> Trip In <span class="typed-words"></span></h1>
+                        <div class="row">
+                            <div class="col-12">
+                                <form class="form" id="travelForm">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                                            <select name="destination" id="destination" class="form-control custom-select">
+                                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                <option value="Kerala">Kerala</option>
+                                                <option value="Delhi">Delhi</option>
+                                                <!-- Add other destinations here -->
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                                            <select name="travelMode" id="travelMode" class="form-control custom-select">
+                                                <option value="bus">Bus</option>
+                                                <option value="train">Train</option>
+                                                <option value="flight">Flight</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                                            <input type="text" class="form-control" id="fromLocation" placeholder="From Location">
+                                        </div>
+                                    </div>    
+                                    <div class="row align-items-center">
+                                        <div class="col-sm-12 col-md-6 mb-3 mb-lg-0 col-lg-4">
+                                            <input type="submit" class="btn btn-primary btn-block" value="Search">
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <label class="control control--checkbox mt-3">
+                                                <span class="caption">Save this search</span>
+                                                <input type="checkbox" checked="checked" />
+                                                <div class="control__indicator"></div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="slides">
+                        <img src="images/hero-slider-1.jpg" alt="Image" class="img-fluid active">
+                        <img src="images/hero-slider-2.jpg" alt="Image" class="img-fluid">
+                        <!-- Additional images here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("travelForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let travelMode = document.getElementById("travelMode").value;
+            let fromLocation = document.getElementById("fromLocation").value;
+            let destination = document.getElementById("destination").value;
+    
+            let url = "";
+    
+            if (travelMode === "bus") {
+                url = `https://www.redbus.in/search?fromCity=${fromLocation}&toCity=${destination}`;
+            } else if (travelMode === "train") {
+                url = `https://www.irctc.co.in/nget/train-search?fromStation=${fromLocation}&toStation=${destination}`;
+            } else if (travelMode === "flight") {
+                // Placeholder for flight booking redirection
+                url = `https://www.exampleflightbooking.com/search?from=${fromLocation}&to=${destination}`;
+            }
+    
+            window.location.href = url;
+        });
+    </script>
+
+
+    
+    <section class="bucket">
+        <h1>Nearby Restuarants to Dine</h1>
+    <div class="row">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-3 mb-lg-0">
+            <div class="media-2">
+                <a href="#" class="d-block mb-3"><img src="" alt="Image" class="card-img-top"></a>
+                <span class="d-flex align-items-center loc mb-2">
+                    <span class="icon-room mr-3"></span>
+                    <span>Budget-Friendly</span>
+                </span>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h3><a href="#">Restuarant1</a></h3>
+                        <div class="price ml-auto">
+                            <span>$520.00</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-3 mb-lg-0">
+            <div class="media-2">
+                <a href="#" class="d-block mb-3"><img src="" alt="Image" class="card-img-top"></a>
+                <span class="d-flex align-items-center loc mb-2">
+                    <span class="icon-room mr-3"></span>
+                    <span>Family-Friendly</span>
+                </span>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h3><a href="#">Restuarant2</a></h3>
+                        <div class="price ml-auto">
+                            <span>$520.00</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-3 mb-lg-0">
+            <div class="media-2">
+                <a href="#" class="d-block mb-3"><img src="" alt="Image" class="card-img-top"></a>
+
+                <span class="d-flex align-items-center loc mb-2">
+                    <span class="icon-room mr-3"></span>
+                    <span>Premium Restaurants</span>
+                </span>
+
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h3><a href="#">Lake Thun</a></h3>
+                        <div class="price ml-auto">
+                            <span>$520.00</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+       
+    </section>
+
+
+
+    <section class="bucket">
+        <h1>Nearby Hotels</h1>
+    <div class="row">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-3 mb-lg-0">
+            <div class="media-2">
+                <a href="#" class="d-block mb-3"><img src="" alt="Image" class="img-fluid2"></a>
+                <span class="d-flex align-items-center loc mb-2">
+                    <span class="icon-room mr-3"></span>
+                    <span>Budget-Friendly</span>
+                </span>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h3><a href="#">Restuarant1</a></h3>
+                        <div class="price ml-auto">
+                            <span>$520.00</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-3 mb-lg-0">
+            <div class="media-2">
+                <a href="#" class="d-block mb-3"><img src="" alt="Image" class="img-fluid2"></a>
+                <span class="d-flex align-items-center loc mb-2">
+                    <span class="icon-room mr-3"></span>
+                    <span>Family-Friendly</span>
+                </span>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h3><a href="#">Restuarant2</a></h3>
+                        <div class="price ml-auto">
+                            <span>$520.00</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-3 mb-3 mb-lg-0">
+            <div class="media-2">
+                <a href="#" class="d-block mb-3"><img src="" alt="Image" class="card-img-top"></a>
+
+                <span class="d-flex align-items-center loc mb-2">
+                    <span class="icon-room mr-3"></span>
+                    <span>Premium Restaurants</span>
+                </span>
+
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h3><a href="#">Lake Thun</a></h3>
+                        <div class="price ml-auto">
+                            <span>$520.00</span>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+       </section>   
+        
+</body></html>
