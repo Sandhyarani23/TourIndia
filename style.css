@@ -1448,8 +1448,13 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
   
 }
 .img-fluid2 {
-  width: 100%; /* Adjusts the width based on the container */
-  
-  height: 300px; /* Height adjusts to maintain aspect ratio */
-  
+  width: 100%; 
+  height: 300px; 
+}
+.card-img-top
+{
+  min-height: 200px;
+  max-height: 200px;
+  min-width: 250px;
+  max-width: 310px;
 }
